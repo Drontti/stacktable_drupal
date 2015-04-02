@@ -1,0 +1,4 @@
+name = stacktable
+description = Load Stacktable.js on every page to every table.
+core = 7.x
+dependencies[] = libraries

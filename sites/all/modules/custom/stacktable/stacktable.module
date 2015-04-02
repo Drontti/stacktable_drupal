@@ -1,0 +1,44 @@
+<?php
+
+
+/**
+ * Implements hook_library().
+ */
+function stacktable_libraries_info() {
+  $libraries['stacktable.js'] = array(
+    'title' => 'Stacktable.js',
+    'website' => 'http://johnpolacek.github.io/stacktable.js',
+    'download url' => 'https://github.com/johnpolacek/stacktable.js/zipball/master',
+    'version callback' => 'short_circuit_version',
+    'files' => array(
+      'js' => array(
+        'stacktable.js' => array(
+          'scope' => 'header',
+        ),
+      ),
+      'css' => array(
+        'stacktable.css' => array(
+          'type' => 'file',
+          'media' => 'screen',
+        ),
+      ),
+    ),
+  );
+  return $libraries;
+}
+
+/**
+* Short-circuit the version argument. This is dum.
+*/
+function short_circuit_version() { 
+  return TRUE;
+}
+
+/**
+ * @file
+ * stacktable.module
+ */
+function stacktable_init() {
+  $library = libraries_load('stacktable.js');
+  drupal_add_js(drupal_get_path('module', 'stacktable') . '/js/stacktable.module.js');
+}
